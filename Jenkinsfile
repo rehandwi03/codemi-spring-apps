@@ -14,9 +14,9 @@ pipeline{
 
                 // create project directory
                 // sh 'cd ${GOPATH}/src'
-                sh 'mkdir -p /spring-web/'
+                // sh 'mkdir -p /spring-web/'
                 // copy all files in our Jenkins workspace to our project directory
-                sh 'cp -r ${WORKSPACE}/* /spring-web/'
+                sh 'cd ${WORKSPACE}/'
                 // build the app
                 sh 'mvn clean package'
             }
