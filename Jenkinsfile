@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'adoptopenjdk/openjdk11:alpine-jre'
+                    image 'openjdk:11-jdk-slim'
                 }
             }
             steps {
