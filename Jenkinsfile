@@ -7,7 +7,8 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'adoptopenjdk/openjdk11:alpine-jre'
+                     image 'maven:3-alpine' 
+                     args '-v /root/.m2:/root/.m2' 
                 }
             }
             steps {
