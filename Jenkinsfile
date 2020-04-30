@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         registry = "2017330017/spring-web"
+        args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
     stages {
         stage('Build') {
