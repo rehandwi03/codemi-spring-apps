@@ -11,14 +11,13 @@ pipeline{
                 }
             }
             steps {
-
                 // create project directory
                 // sh 'cd ${GOPATH}/src'
-                // sh 'mkdir -p ${GOPATH}/src/guser'
-                // // copy all files in our Jenkins workspace to our project directory
-                // sh 'cp -r ${WORKSPACE}/* ${GOPATH}/src/guser'
-                // // build the app
-                // sh 'go build'
+                sh 'mkdir -p /opt/spring-web/'
+                // copy all files in our Jenkins workspace to our project directory
+                sh 'cp -r ${WORKSPACE}/* /opt/spring-web/'
+                // build the app
+                sh 'mvn clean package'
             }
         }
         // stage('Publish') {
