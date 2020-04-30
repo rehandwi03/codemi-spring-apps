@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                echo "This is spring"
+                echo "This is spring boot"
             }
         }
     }
