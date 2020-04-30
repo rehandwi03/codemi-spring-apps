@@ -5,11 +5,11 @@ pipeline{
     }
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'adoptopenjdk/openjdk11:alpine-jre'
-                }
-            }
+            // agent {
+            //     docker {
+            //         image 'adoptopenjdk/openjdk11:alpine-jre'
+            //     }
+            // }
             steps {
 
                 // create project directory
@@ -17,8 +17,7 @@ pipeline{
                 // sh 'mkdir -p /spring-web/'
                 // copy all files in our Jenkins workspace to our project directory
                 sh 'cd ${WORKSPACE}/'
-                // build the app
-                sh 'mvn clean package'
+                sh 'pwd'
             }
         }
         // stage('Publish') {
