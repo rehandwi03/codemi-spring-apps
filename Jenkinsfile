@@ -10,11 +10,6 @@ pipeline {
     }
     stages {
         stage('Build') { 
-            agent {
-                docker {
-                    image 'adoptopenjdk/openjdk11:alpine-jre'
-                }
-            }
             steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
