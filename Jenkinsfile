@@ -4,6 +4,22 @@ pipeline {
         registry = "2017330017/spring-web"
     }
     stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'adoptopenjdk/openjdk11:alpine-jre'
+                }
+            }
+            steps {
+                script {
+                    def appimage = docker.build registry + ":$BUILD_NUMBER"
+                    docker.withRegistry('', registryCredential) {
+                        appimage.push()
+                        appimage.push('latest')
+                    }
+                }
+            }
+        }
         // stage('Clean') { 
         //     agent {
         //         docker {
@@ -14,22 +30,6 @@ pipeline {
         //     steps {
         //         sh 'mvn -B -DskipTests clean package' 
         //     }
-        // }
-        stage('Build') {
-            agent {
-                docker {
-                    image 'adoptopenjdk/openjdk11:alpine-jre'
-                }
-            }
-            // steps {
-            //     script {
-            //         def appimage = docker.build registry + ":$BUILD_NUMBER"
-            //         docker.withRegistry('', registryCredential) {
-            //             appimage.push()
-            //             appimage.push('latest')
-            //         }
-            //     }
-            // }
-        }
+        // } 
     }
 }
