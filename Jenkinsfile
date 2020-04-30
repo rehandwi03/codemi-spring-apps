@@ -15,5 +15,19 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
+        stage('Build') {
+            agent {
+                image 'adoptopenjdk/openjdk11:alpine-jre'
+            }
+            steps {
+                script {
+                    def appimage = docker.build registry + ":$BUILD_NUMBER"
+                    docker.withRegistry('', registryCredential) {
+                        appimage.push()
+                        appimage.push('latest')
+                    }
+                }
+            }
+        }
     }
 }
