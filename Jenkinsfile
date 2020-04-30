@@ -4,13 +4,15 @@ pipeline {
         registry = "2017330017/spring-web"
     }
     stages {
-        agent {
-            docker {
-                image 'adoptopenjdk/openjdk11:alpine-jre'
+        stage('Build') {
+            agent {
+                docker {
+                    image 'adoptopenjdk/openjdk11:alpine-jre'
+                }
             }
-        }
-        steps {
-            echo 'Hello World'
+            steps {
+                sh 'Hello World'
+            }
         }
     }
 }
