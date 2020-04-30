@@ -17,7 +17,9 @@ pipeline {
         }
         stage('Build') {
             agent {
+                docker {
                 image 'adoptopenjdk/openjdk11:alpine-jre'
+                }
             }
             steps {
                 script {
