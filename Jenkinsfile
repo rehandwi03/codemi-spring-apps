@@ -21,7 +21,7 @@ pipeline {
                 registryCredential = 'dockerhub'
             }
             steps {
-                sh 'cd ${WORKSPACE}/'
+                sh 'cd ${WORKSPACE}@2/'
                 script {
                     def appimage = docker.build registry + ":$BUILD_NUMBER"
                     docker.withRegistry('', registryCredential) {
