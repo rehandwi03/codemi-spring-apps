@@ -12,6 +12,7 @@ pipeline {
                     }
             }
             steps {
+                sh 'cd ${WORKSPACE}/'
                 sh 'mvn clean package' 
             }
         }
