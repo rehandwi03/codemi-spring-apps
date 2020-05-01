@@ -12,7 +12,7 @@ pipeline {
                     }
             }
             steps {
-                // sh 'cd ${WORKSPACE}/'
+                echo 'cd ${WORKSPACE}/'
                 sh 'mvn clean package' 
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 registryCredential = 'dockerhub'
             }
             steps {
-                sh 'cd ${WORKSPACE}@2/'
+                // sh 'cd ${WORKSPACE}@2/'
                 script {
                     def appimage = docker.build registry + ":$BUILD_NUMBER"
                     docker.withRegistry('', registryCredential) {
