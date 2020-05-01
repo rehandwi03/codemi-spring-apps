@@ -20,7 +20,7 @@ pipeline {
                 sh 'cd ${WORKSPACE}/'
                 script {
                     def appimage = docker.build registry + ":$BUILD_NUMBER"
-                    ocker.withRegistry('', registryCredential) {
+                    docker.withRegistry('', registryCredential) {
                         appimage.push()
                         appimage.push('latest')
                     }
