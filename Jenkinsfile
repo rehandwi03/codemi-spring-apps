@@ -16,6 +16,9 @@ pipeline {
             }
         }
         stage('Build') {
+            environment {
+                registryCredential = 'dockerhub'
+            }
             steps {
                 sh 'cd ${WORKSPACE}/'
                 script {
