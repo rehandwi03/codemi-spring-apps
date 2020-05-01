@@ -8,7 +8,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.6.3-jdk-11' 
-                    // args '-v /root/.m2:/root/.m2' 
+                    args '-v /root/.m2:/root/.m2' 
                     }
             }
             steps {
@@ -16,19 +16,9 @@ pipeline {
             }
         }
         stage('Build') {
-            agent {
-                docker {
-                    image 'openjdk:11-jdk-slim'
-                }
-            }
             steps {
-                script {
-                    def appimage = docker.build registry + ":$BUILD_NUMBER"
-                    docker.withRegistry('', registryCredential) {
-                        appimage.push()
-                        appimage.push('latest')
-                    }
-                }
+                sh 'cd ${WORKSPACE}/'
+                def appimage = docker.build registry + ":$BUILD_NUMBER"
             }
         }
     }
