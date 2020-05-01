@@ -32,7 +32,7 @@ pipeline {
                 sh 'pwd'
             }
         }
-        stage('Deploy') {
+        // stage('Deploy') {
         //     steps {
         //         script {
         //             def image_id = registry + ":$BUILD_NUMBER"
