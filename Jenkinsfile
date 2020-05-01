@@ -29,6 +29,7 @@ pipeline {
                         appimage.push('latest')
                     }
                 }
+                sh 'pwd'
             }
         }
         stage('Deploy') {
