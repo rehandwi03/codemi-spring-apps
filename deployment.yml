@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-deployment
+  name: codemi-spring-apps
   labels:
     role: app
 spec:
@@ -9,14 +9,40 @@ spec:
   selector:
     matchLabels:
       role: app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:
         role: app
     spec:
       containers:
-        - name: app
-          image: "{{ image_id }}"
-          resources:
-            requests:
-              cpu: 100m
+      - image: 2017330017/codemi-spring-apps:v1
+        name: spring-apps
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "80m"
+            memory: "100Mi"
+          limits:
+            cpu: "500m"
+            memory: "650Mi"
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: http-port
+        #   initialDelaySeconds: 90
+        #   timeoutSeconds: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: http-port
+        #   initialDelaySeconds: 60
+        #   timeoutSeconds: 10   
+        ports:
+        - containerPort: 8080
+          name: http-port
+      restartPolicy: Always

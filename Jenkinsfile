@@ -4,24 +4,11 @@ pipeline {
         registry = "2017330017/spring-web"
     }
     stages {
-        stage('Clean') { 
-            agent {
-                docker {
-                    image 'maven:3.6.3-jdk-11' 
-                    args '-v /root/.m2:/root/.m2' 
-                    }
-            }
-            steps {
-                sh 'cd ${WORKSPACE}/'
-                sh 'mvn clean package' 
-            }
-        }
         stage('Build') {
             environment {
                 registryCredential = 'dockerhub'
             }
             steps {
-                sh 'cd ${WORKSPACE}@2/'
                 script {
                     def appimage = docker.build registry + ":$BUILD_NUMBER"
                     docker.withRegistry('', registryCredential) {
@@ -29,7 +16,6 @@ pipeline {
                         appimage.push('latest')
                     }
                 }
-                sh 'pwd'
             }
         }
         stage('Deploy') {
