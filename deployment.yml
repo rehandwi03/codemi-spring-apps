@@ -32,13 +32,13 @@ spec:
             memory: "650Mi"
         livenessProbe:
           httpGet:
-            path: /health
+            path: /
             port: http-port
           initialDelaySeconds: 90
           timeoutSeconds: 10
         readinessProbe:
           httpGet:
-            path: /health
+            path: /
             port: http-port
           initialDelaySeconds: 60
           timeoutSeconds: 10   
