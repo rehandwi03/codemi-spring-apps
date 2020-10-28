@@ -34,7 +34,6 @@ Example:
 
 ```
 $ docker build -t 2017330017/codemi-spring-apps:v1 .
-
 ```
 
 NOTE: Depending on your internet it will take a couple of minutes or more when create docker images, but then once the docker images are pulled it will be fast.
@@ -65,10 +64,66 @@ Docker push image:
 $ docker push yourimagename:tag
 ```
 
-The JAR is executable:
+# Create Kubernetes Deployment with manifest file
+
+In this step we'll create kubernetes deployment with manifest file. This is a manifest file including replicas, replicaset, rolling update, resources limits & requests and health check.:
 
 ```
-$ java -jar target/*.jar
+$ cat deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codemi-spring-apps
+  labels:
+    role: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      role: app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        role: app
+    spec:
+      containers:
+      - image: 2017330017/codemi-spring-apps:v1
+        name: spring-apps
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "80m"
+            memory: "100Mi"
+          limits:
+            cpu: "500m"
+            memory: "650Mi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http-port
+          initialDelaySeconds: 90
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: http-port
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+        ports:
+        - containerPort: 8080
+          name: http-port
+      restartPolicy: Always
+```
+
+Create deployment with kubectl command:
+
+```
+$ kubectl apply -f deployment.yaml
 ```
 
 The app has some built in HTTP endpoints by virtue of the "actuator" dependency we added when we downloaded the project. So you will see something like this in the logs on startup:
