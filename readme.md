@@ -27,22 +27,42 @@ gke-cluster-1-default-pool-f65e75f3-kd41   Ready    <none>   4h17m   v1.16.13-gk
 Make sure you're in root project directory and run docker command:
 
 ```
-docker build -t yourdockerimagename .
+$ docker build -t yourdockerimagename .
 ```
 
-You can then build the application:
+Example:
 
 ```
-./mvnw install
-```
-
-NOTE: It will take a couple of minutes the first time, but then once the dependencies are all cached it will be fast.
-
-And you can see the result of the build. If the build was successful, you should see a JAR file, something like this:
+$ docker build -t 2017330017/codemi-spring-apps:v1 .
 
 ```
-ls -l target/*.jar
--rw-r--r-- 1 root root 19463334 Nov 15 11:54 target/demo-0.0.1-SNAPSHOT.jar
+
+NOTE: Depending on your internet it will take a couple of minutes or more when create docker image, but then once the docker image are pulled it will be fast.
+
+And you can see the result of the build. If the build was successful, you should see a docker image, something like this:
+
+```
+Successfully built 7c4f1d292c67
+Successfully tagged 2017330017/codemi-spring-apps:v1
+```
+
+# Push a Docker image
+
+After build the docker image, we'll push the image to the docker registry. Example, i'm using docker registry. If your docker registry is private, you must login with docker login command.
+
+Docker login
+
+```
+$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: yourusername
+Password: yourpassword
+```
+
+Docker push image
+
+```
+$ docker push yourimagename:tag
 ```
 
 The JAR is executable:
