@@ -1,7 +1,5 @@
 # What you'll need
 
-You will need a Linux or Linux-like command line. Command line examples in this guide work on Linux, a MacOS terminal with a shell, or https://docs.microsoft.com/en-us/windows/wsl[WSL] on Windows.
-
 You will also need a Docker Engine installed in your PC/Laptop, Kubernetes cluster and the command line tool https://kubernetes.io/docs/tasks/tools/install-kubectl/[Kubectl]. You can create a cluster locally using https://github.com/kubernetes-sigs/kind[Kind] (on Docker) or https://github.com/kubernetes/minikube[Minikube]. Or you can use a cloud provider, such as https://console.cloud.google.com/kubernetes/[Google Cloud Platform], https://aws.amazon.com/eks/[Amazon Web Services] or https://azure.microsoft.com/en-gb/services/kubernetes-service/[Microsoft Azure]. Before proceeding further, verify you can run `kubectl` commands from the shell. E.g. (using `kind`):
 
 ```
@@ -13,7 +11,9 @@ Metrics-server is running at https://xx.xx.xx.xx/api/v1/namespaces/kube-system/s
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
-and
+NOTE: Depending on your internet it will take a couple of minutes or more when create docker images, but then once the docker images are pulled it will be fast.
+
+And you can see the result of the build. If the build was successful, you should see a docker images, something like this:
 
 ```
 $ kubectl get nodes
