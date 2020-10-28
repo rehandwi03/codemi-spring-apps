@@ -16,18 +16,18 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 and
 
 ```
-$ kubectl get node
+$ kubectl get nodes
 NAME                                       STATUS   ROLES    AGE     VERSION
 gke-cluster-1-default-pool-f65e75f3-7f2h   Ready    <none>   4h17m   v1.16.13-gke.401
 gke-cluster-1-default-pool-f65e75f3-kd41   Ready    <none>   4h17m   v1.16.13-gke.401
 ```
 
-== Create a Spring Boot Application
+# Create a Docker image
 
-The first thing we will do is create a Spring Boot application. If you have one you prefer to use already in github, you could clone it in the terminal (`git` and `java` are installed already). Or you can create an application from scratch using start.spring.io:
+Make sure you're in root project directory and run docker command:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,actuator | tar -xzvf -
+docker build -t yourdockerimagename .
 ```
 
 You can then build the application:
