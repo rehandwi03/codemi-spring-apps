@@ -1,24 +1,25 @@
 # What you'll need
 
-:java_version: 1.8
 You will need a Linux or Linux-like command line. Command line examples in this guide work on Linux, a MacOS terminal with a shell, or https://docs.microsoft.com/en-us/windows/wsl[WSL] on Windows.
 
-You will also need a Kubernetes cluster and the command line tool https://kubernetes.io/docs/tasks/tools/install-kubectl/[Kubectl]. You can create a cluster locally using https://github.com/kubernetes-sigs/kind[Kind] (on Docker) or https://github.com/kubernetes/minikube[Minikube]. Or you can use a cloud provider, such as https://console.cloud.google.com/kubernetes/[Google Cloud Platform], https://aws.amazon.com/eks/[Amazon Web Services] or https://azure.microsoft.com/en-gb/services/kubernetes-service/[Microsoft Azure]. Before proceeding further, verify you can run `kubectl` commands from the shell. E.g. (using `kind`):
+You will also need a Docker Engine installed in your PC/Laptop, Kubernetes cluster and the command line tool https://kubernetes.io/docs/tasks/tools/install-kubectl/[Kubectl]. You can create a cluster locally using https://github.com/kubernetes-sigs/kind[Kind] (on Docker) or https://github.com/kubernetes/minikube[Minikube]. Or you can use a cloud provider, such as https://console.cloud.google.com/kubernetes/[Google Cloud Platform], https://aws.amazon.com/eks/[Amazon Web Services] or https://azure.microsoft.com/en-gb/services/kubernetes-service/[Microsoft Azure]. Before proceeding further, verify you can run `kubectl` commands from the shell. E.g. (using `kind`):
 
 ```
 $ kubectl cluster-info
-Kubernetes master is running at https://127.0.0.1:46253
-KubeDNS is running at https://127.0.0.1:46253/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-
+Kubernetes master is running at https://xx.xx.xx.xx
+GLBCDefaultBackend is running at https://xx.xx.xx.xx/api/v1/namespaces/kube-system/services/default-http-backend:http/proxy
+KubeDNS is running at https://xx.xx.xx.xx/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+Metrics-server is running at https://xx.xx.xx.xx/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
 and
 
 ```
-$ kubectl get all
-NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-service/kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   7m13s
+$ kubectl get node
+NAME                                       STATUS   ROLES    AGE     VERSION
+gke-cluster-1-default-pool-f65e75f3-7f2h   Ready    <none>   4h17m   v1.16.13-gke.401
+gke-cluster-1-default-pool-f65e75f3-kd41   Ready    <none>   4h17m   v1.16.13-gke.401
 ```
 
 == Create a Spring Boot Application
