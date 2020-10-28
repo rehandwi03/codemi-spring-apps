@@ -22,7 +22,7 @@ gke-cluster-1-default-pool-f65e75f3-7f2h   Ready    <none>   4h17m   v1.16.13-gk
 gke-cluster-1-default-pool-f65e75f3-kd41   Ready    <none>   4h17m   v1.16.13-gke.401
 ```
 
-# Create a Docker image
+# Create a Docker images
 
 Make sure you're in root project directory and run docker command:
 
@@ -37,9 +37,9 @@ $ docker build -t 2017330017/codemi-spring-apps:v1 .
 
 ```
 
-NOTE: Depending on your internet it will take a couple of minutes or more when create docker image, but then once the docker image are pulled it will be fast.
+NOTE: Depending on your internet it will take a couple of minutes or more when create docker images, but then once the docker images are pulled it will be fast.
 
-And you can see the result of the build. If the build was successful, you should see a docker image, something like this:
+And you can see the result of the build. If the build was successful, you should see a docker images, something like this:
 
 ```
 Successfully built 7c4f1d292c67
@@ -50,7 +50,7 @@ Successfully tagged 2017330017/codemi-spring-apps:v1
 
 After build the docker image, we'll push the image to the docker registry. Example, i'm using docker registry. If your docker registry is private, you must login with docker login command.
 
-Docker login
+Docker login:
 
 ```
 $ docker login
@@ -59,7 +59,7 @@ Username: yourusername
 Password: yourpassword
 ```
 
-Docker push image
+Docker push image:
 
 ```
 $ docker push yourimagename:tag
