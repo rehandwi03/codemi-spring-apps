@@ -1,10 +1,5 @@
-# What you'll build
+# What you'll need
 
-https://kubernetes.io[Kubernetes] is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. In this guide we will build and deploy a simple Spring boot application.
-
-NOTE: There is also a https://spring.io/guides/gs/spring-boot-docker[Getting Started Guide] and a https://spring.io/guides/topicals/spring-boot-docker[Topical Guide] on Docker, which cover some of the background on building a container image.
-
-== What you'll need
 :java_version: 1.8
 You will need a Linux or Linux-like command line. Command line examples in this guide work on Linux, a MacOS terminal with a shell, or https://docs.microsoft.com/en-us/windows/wsl[WSL] on Windows.
 
