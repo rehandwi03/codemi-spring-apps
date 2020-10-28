@@ -1,3 +1,5 @@
+
+
 # [NOTE]
 
 There are some interactive tutorials that complement and extend the content of this guide on https://katacoda.com/springguides[Katacoda/springguides]. If you follow those tutorials, all the code will be running in the cloud from your browser. Or you can create your own cluster and install all the tools you need locally, then copy paste from the guides.
